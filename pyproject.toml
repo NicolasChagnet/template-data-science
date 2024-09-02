@@ -1,0 +1,43 @@
+[tool.ruff]
+src = ["app"]
+line-length = 120
+show-fixes = true
+unsafe-fixes = true
+
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D100"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint.pycodestyle]
+max-doc-length = 72
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.poetry]
+name = "data science template"
+version = "0.1.0"
+description = "Template for Data Science project"
+authors = ["Nicolas Chagnet <nchagnet@protonmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/NicolasChagnet/template-data-science"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyprojroot = "^1.1.0"
+pandas = "^2.2.0"
+numpy = "^2.0"
+matplotlib = "^3.4.3"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
