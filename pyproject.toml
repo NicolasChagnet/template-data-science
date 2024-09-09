@@ -1,16 +1,127 @@
+[project]
+name = "Data-science-template"
+version = "0.1.0"
+description = "Template for Data Science project"
+authors = ["Nicolas Chagnet <nchagnet@protonmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/NicolasChagnet/template-data-science"
+requires-python = ">=3.10"
+dependencies = [
+    "loguru>=0.7.2",
+    "pathlib>=1.0",
+    # "pendulum" # Alternative to datetime
+    # "httpx" # Alternative to requests
+    # "click" # Alternative to argparse
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "scikit-learn>=1.5.1",
+    # "scipy",
+    # "statsmodels",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "gitlint>=0.19.1",
+    "pre-commit>=3.8.0",
+    "pyright>=1.1.379",
+    "ruff>=0.6.4",
+    "typos>=1.24.5",
+]
+
 [tool.ruff]
-src = ["app"]
-line-length = 120
 show-fixes = true
 unsafe-fixes = true
 
+# Exclude a variety of commonly ignored directories.
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".git-rewrite",
+  ".hg",
+  ".ipynb_checkpoints",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pyenv",
+  ".pytest_cache",
+  ".pytype",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  ".vscode",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "site-packages",
+  "venv",
+]
+
+# Same as Black.
+line-length = 120
+indent-width = 4
+
+# Assume Python 3.8
+target-version = "py38"
+
 
 [tool.ruff.lint]
-select = ["ALL"]
-ignore = ["D100"]
+select = [
+  # pycodestyle
+  "E",
+  # Pyflakes
+  "F",
+  # pyupgrade
+  "UP",
+  # flake8-bugbear
+  "B",
+  # flake8-simplify
+  #"SIM",
+  # isort
+  "I",
+]
+ignore = ["E501", "D100"]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+#
+# This is currently disabled by default, but it is planned for this
+# to be opt-out in the future.
 docstring-code-format = true
+
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+#
+# This only has an effect when the `docstring-code-format` setting is
+# enabled.
+docstring-code-line-length = "dynamic"
+
 
 [tool.ruff.lint.pycodestyle]
 max-doc-length = 72
@@ -18,26 +129,10 @@ max-doc-length = 72
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.poetry]
-name = "data science template"
-version = "0.1.0"
-description = "Template for Data Science project"
-authors = ["Nicolas Chagnet <nchagnet@protonmail.com>"]
-license = "MIT"
-readme = "README.md"
-repository = "https://github.com/NicolasChagnet/template-data-science"
-package-mode = false
+[tool.pyright]
+include = ["app"]
+exclude = ["**/.venv", "**/__pycache__"]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-pyprojroot = "^1.1.0"
-pandas = "^2.2.0"
-numpy = "^2.0"
-matplotlib = "^3.4.3"
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.6.3"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.typos.default.extend-words]
+# Add whitelist words such as
+# teh = "teh"
